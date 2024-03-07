@@ -26,9 +26,9 @@ pub fn wifi(
 
     wifi.set_configuration(&Configuration::Client(ClientConfiguration::default()))?;
 
-    // info!("Starting wifi...");
+    info!("Starting wifi...");
 
-    //wifi.start()?;
+    wifi.start()?;
 
     info!("Scanning...");
 
@@ -50,17 +50,17 @@ pub fn wifi(
         None
     };
 
-    //wifi.set_configuration(&Configuration::Client(ClientConfiguration {
-    //    ssid: String::from(ssid),
-    //    password: pass.into(),
-    //    channel,
-    //    auth_method,
-    //    ..Default::default()
-    //}))?;
+    wifi.set_configuration(&Configuration::Client(ClientConfiguration {
+        ssid: ssid.into(),
+        password: pass.into(),
+        channel,
+        auth_method,
+        ..Default::default()
+    }))?;
 
     info!("Connecting wifi...");
 
-    //wifi.connect()?;
+    wifi.connect()?;
 
     info!("Waiting for DHCP lease...");
 
